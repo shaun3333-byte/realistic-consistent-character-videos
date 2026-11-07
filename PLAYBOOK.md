@@ -125,16 +125,16 @@ After trimming dead air (Section 9), 4 × 8 s lands at about 28–31 s. "About 3
 
 ### 2e. Per-clip rules
 
-- **One speaker per clip.** At most ONE quoted line per shot and at most TWO lines per clip (8 s), each spoken by a named character via their Short Tag.
+- **One speaker and one line per dialogue clip.** Generate a solo close-up using only the speaker’s anchor. Keep the other character entirely out of the start image and every shot in that render. Use separate clips for replies. Put any two-shot, listener reaction or prop insert that shows another face in a separate silent render.
 - **Word budget:** about 2.5 words per second of the shot that carries the line, with a breath before and after. 8-second clip: max **16 words total**; 5-second clip: max **10 words**. Shorter is better.
 - Let the line start after a tiny breath (about 0.3 s), never at the very first frame and never in the last second.
-- Two characters in one clip: the listener gets a **silent action** ("listens, lips closed, eyebrows rising") and the prompt says they don't speak.
+- Two characters can share the frame in a silent clip. Prompt closed mouths and no dialogue, and use **Video Only (No Sound)** for that render. Restore sound for the next spoken clip.
 - About one clip in four can be dialogue-free (action and sound only) for rhythm.
 - Every clip contains a visible change; never repeat the same greeting, reach or walk.
 
 **Multi-shot plan per 8-second clip (2–3 shots):**
 - Shot A (~3 s): the framing of the start image. If anyone speaks in this clip, put the line here, because the start image anchors identity and lip sync best.
-- Shot B (~3 s): a hard cut to a different scale or angle of the same people in the same place (e.g. medium → close-up, or a reverse angle on the listener's reaction).
+- Shot B (~3 s): a hard cut to a tighter angle of the same speaker or a face-free insert. For a short reply, prefer a 3–5 s render or trim the longer render to the usable beat.
 - Shot C (~2 s, optional): an insert or reaction (hands, a prop, a smile).
 - Change shot size by at least one step at every cut. Don't split a sentence across a cut. Keep the camera static or slow while someone talks.
 
@@ -243,7 +243,7 @@ The video model responds best to long, plain-English descriptions that read like
 7. **Dialogue:** name the speaker by Short Tag right before the line, add the **Voice Lock**, then the exact words in double quotes:
    `the woman with shoulder-length wavy black hair in the rust-orange sweater says in a warm, mid-pitched, confident female voice, speaking English with a natural Australian accent: "You actually kept them?"`
    Use exactly the same Voice Lock words in every clip for that character.
-8. **Non-speakers:** give them a silent action and say so: "the man in the charcoal overcoat listens, lips closed, and does not speak".
+8. **Speaker isolation:** keep every other face out of a dialogue render, including faces in mirrors and photos. Use a separate silent clip for the listener’s reaction.
 9. **Multi-shot cuts** (Multi-shot mode): name every cut in prose and re-establish it:
    - `A hard cut transitions to a close-up of [Short Tag], [new angle], [same light]…`
    - `The view cuts to a medium shot of [Short Tag]…`
@@ -254,21 +254,13 @@ The video model responds best to long, plain-English descriptions that read like
 11. **Sound last, woven into the prose:** the voice up front, effects tied to visible actions (a cup set down, a door click) with distance, the ambience of the World Lock, and **"no music"**. Don't mention subtitles or captions at all; if text ever appears, add "no on-screen text" once at the end.
 12. **Avoid:** crowds, more than two people doing anything important, readable signs and text, fights, spins, falling objects, fast chaotic physics, conflicting light sources, quality boosters, resolution or duration in the text, naming other models or tools.
 
-### Template: Multi-shot, 8 s, one speaker (default)
+### Dialogue prompt template
 
 ```
-C[##] — A medium two-shot, front-facing at eye level, the camera holding static on [Short Tag 1] at frame left and [Short Tag 2] at frame right in [location, as in the image], [light, as in the image]. Initially [Short Tag 1] [first decisive action already moving], then, after a quick breath, [Short Tag 1] says in [Voice Lock 1]: "[line, max ~8 words]" while [Short Tag 2] listens, lips closed, [silent reaction], and does not speak. A hard cut transitions to a close-up of [Short Tag 2], seen from a slight side angle in the same [light]; the camera pushes in slightly as [Short Tag 2] [reaction: eyebrows rise, a grin breaks], silent. The view cuts to a close-up of [hands / prop] as [final action lands]. The sound carries across the cuts: [Short Tag 1]'s clear voice up front, [1–2 effects tied to actions], [World Lock ambience], no music.
+C[##] — Eye-level close-up of [speaker Short Tag] alone, facing three-quarter with an unobstructed mouth. [Speaker Short Tag] [small action on the first frame] and immediately says [Voice Lock]: "[one short line]". A hard cut transitions to [tighter view of the same speaker or face-free prop insert] as [next action lands]. Exactly one person appears and only that person speaks. Natural room tone, no music.
 ```
 
-### Template: Single-shot, 5 s
-
-```
-C[##] — A medium close-up, front-facing at eye level, the camera remains static on [Short Tag] in [location], [light]. Initially [Short Tag] [first motion], then after a quick breath [Short Tag] says in [Voice Lock]: "[line, max ~10 words]", [gesture or brow lift tied to a key word], and finishes with [end pose]. [Effect tied to an action], [ambience], no music.
-```
-
-### Worked example (Multi-shot, 8 s, 9:16, two characters)
-
-> C01 — A medium two-shot, front-facing at eye level, the camera holding static on the woman with shoulder-length wavy black hair in the rust-orange sweater at frame left and the man with short curly brown hair in the charcoal overcoat at frame right, at a wooden rooftop café table under warm string lights in late golden-hour sun from the left. Initially the woman slaps two paper concert tickets onto the table and leans in, then, after a quick breath, the woman with shoulder-length wavy black hair says in a warm, mid-pitched, confident female voice, speaking English with a natural Australian accent: "Front row. Tonight. Don't say you're busy." The man with short curly brown hair listens, lips closed, eyes widening, and does not speak. A hard cut transitions to a close-up of the man with short curly brown hair in the charcoal overcoat from a slight side angle in the same golden light; the camera pushes in a little as his eyebrows shoot up and a guilty grin spreads. The view cuts to a close-up of his hand sliding two identical tickets out of his coat pocket. The rooftop sound carries across the cuts: her clear voice up front, the slap of paper on wood, soft café chatter and distant traffic below, no music.
+For single-shot dialogue, omit the hard cut. Alternate solo clips for an exchange. Use an occasional silent cutaway when it adds information or shows a meaningful reaction.
 
 ## 8. GENERATE EVERY CLIP (C01 → C[N]), RESPECTING THE 5-VIDEO LIMIT
 
@@ -282,7 +274,7 @@ For each clip:
 3. **Image Prompt** → select all, delete, type the clip's start-image prompt (Section 6).
 4. **Create Image**. Wait for the new image to appear and be selected in the carousel. Do the quick image check; regenerate if it's clearly wrong.
 5. **Video and Audio Prompt** → select all, delete, type the clip's video prompt (Section 7). It must start with `C## —`.
-6. **Advanced Mode** ON → **Automatically enhance my video prompt** OFF → **Video Only (No Sound)** OFF → **Manual Video Length** ON, then set the slider to **8** (Multi-shot) or **5** (Single-shot). Ticking the box resets the slider to 10, so set it after ticking and re-read the value. Click the slider handle, then Arrow Left/Right until it reads right.
+6. **Advanced Mode** ON → **Automatically enhance my video prompt** OFF → **Video Only (No Sound)** OFF for dialogue and ON for silent reactions → **Manual Video Length** ON, then set the slider to **3–5** for short replies, **8** for longer multi-shot action, or **5** for a standard single shot. Ticking the box resets the slider to 10, so set it after ticking and re-read the value. Click the slider handle, then Arrow Left/Right until it reads right.
 7. Uncheck **Share this in the public gallery** again.
 8. Scroll the dialog down and click **Create Video** ONCE.
 9. Read the result:
@@ -311,7 +303,7 @@ For each clip:
 ### 9a. Collect the clips
 1. Close the dialog (top-right **X**). Click the project format above the preview.
 2. **Media Library** → **My Media** → double-click **My AI Videos** (sort **Newest**). Wait until every C01…C[N] card has finished (leave and re-enter the folder every 30–60 s).
-3. Watch each clip once if you can. Regenerate a clip (same image, same prompt) only if it is clearly unusable: a different face, the wrong person speaking, garbled or missing dialogue, a broken body, a frozen clip. Max 2 attempts per clip; then keep the best.
+3. Check each spoken line against the assigned speaker, exact words and visible mouth movement. If the wrong person speaks, rebuild with a solo start image and only the speaker’s reference. If a solo render still has bad dialogue, regenerate only that line. Keep unresolved clips out of a verified final and record whether sound could be checked.
 
 ### 9b. Build the timeline
 4. Add the clips to **track 1** in story order C01, C02, C03… Either drag each card to the right of the previous clip, or right-click the card → **Add to Timeline**. Identify clips by their title text (`C01 —`…), never by position. Check after each add that exactly one new clip appeared.
@@ -324,7 +316,7 @@ Multi-shot clips have their cuts *inside* them; never cut inside a clip, only tr
 - Never cut into a word. Keep the clips' internal shot cuts intact.
 - **Method A:** put the playhead on the first good frame → **Cut** → right-click the left piece → **Delete**; same at the last good frame for the right piece; then **Auto Align Clips**.
 - **Method B:** drag the edges by the pixel amount (40 px = 1 s), then **Auto Align Clips**.
-- **If you can't judge motion or audio**, use this default at 40 px/s: 8 s clip: remove **0.3 s (12 px)** from the start and **0.5 s (20 px)** from the end; 5 s clip: **0.3 s (12 px)** and **0.4 s (16 px)**.
+- **Check every join with sound.** For ordinary replies, aim for about **0.15–0.30 s** between the end of one line and the start of the next. Flag unexplained pauses over **0.5 s**. Trim toward the first meaningful motion or word and cut away after the line or reaction lands. If dead air is inside a clip and edge trims cannot remove it, replace it with a shorter render. If audio is unavailable, flag timing and speaker checks as unverified and avoid guessing at speech boundaries.
 - After all trims: **Auto Align Clips**, then play from 0:00 once. No black frames, no gaps, no frozen holds. Total about the target length.
 
 ### 9d. Save and export
@@ -351,7 +343,7 @@ Report only what you actually saw on screen. If the export is still queued, say 
 | Can't upload the photos | Ask the user once to upload them into Media Library → My Media → Images in the open tab (named '[Name] - reference photo') and reply "done". |
 | Face drifts from the photos | Make sure **Creative mode is ON** and the right anchor is in the slot. Add more precise detail to the Character Description where it drifted, move it to the front of the prompt, and regenerate. If the anchor itself is off, remake it from a closer, sharper front-facing photo. |
 | Two characters blend into one face | Give them more different Short Tags (hair, clothing colour), keep them on fixed sides, and select both references. |
-| Wrong person's mouth moves | Name the speaker by Short Tag immediately before the quote; add "[other Short Tag] listens, lips closed, and does not speak"; keep one speaker per clip; or make it a solo close-up. |
+| Wrong person's mouth moves | Replace that clip with a solo close-up using only the intended speaker’s anchor. Generate the listener reaction separately and silently if needed. |
 | Accent wanders or changes between clips | Check the Voice Lock is word-for-word identical in every prompt and that video prompt enhancement is OFF. |
 | Extra or missing words | Shorten the line (max ~8 words per shot) and leave a breath before and after it. |
 | No cuts in a Multi-shot clip | Make sure the video enhancer is OFF; name each cut explicitly ("A hard cut transitions to…") and change the shot size at the cut. |
