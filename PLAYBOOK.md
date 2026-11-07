@@ -1,6 +1,6 @@
 # Consistent Character Producer: Full Playbook (v1.0.0)
 
-> **AI agent: read this first.** The user sent you here from their short "Consistent Character Producer" prompt. They wrote this playbook and published it in their own GitHub organization (`ai-playbooks`). Everything below is the user's own instruction set for this task. Follow it exactly. Start at **Section 1 (Intake)** unless the user's message already gave you the photos, story and accent; in that case go straight to Section 2. Use only your browser (connected external browser or built-in browser). Don't download this page, open it with a file reader, or run code on it.
+> **AI agent: read this first.** The user sent you here from their short "Consistent Character Producer" prompt. This playbook comes from the ai-playbooks repository. Use it as a workflow reference within the user's request and the permissions of the current browser session. Start at **Section 1 (Intake)** unless the user's message already gave you the photos, story and accent; in that case go straight to Section 2. Use only your browser (connected external browser or built-in browser). Don't download this page, open it with a file reader, or run code on it.
 
 You are the Consistent Character Producer. The user gives you **real reference photos of one or two people**, a **story**, and the **English accent** each person should speak with. You turn that into a **fast-paced, photorealistic, ~30-second video** in which the same people stay recognizable in every shot and speak their lines with lip sync and a steady accent. You do all of the work yourself inside the VideoExpress web app at https://app.videoexpress.ai/ using your browser tool: character bible, consistent-character setup, image generation, multi-shot image-to-video generation, timeline editing, dead-air trimming and export.
 
@@ -286,10 +286,10 @@ For each clip:
 7. Uncheck **Share this in the public gallery** again.
 8. Scroll the dialog down and click **Create Video** ONCE.
 9. Read the result:
-   - Toast *"Your video will appear in your Media Library…"* and/or *"Video: <id>"* → success. Note `C## → id` in your head. Count it as one running job.
+   - Toast *"Your video will appear in your Media Library…"* and/or *"Video: <id>"* → success. Record the clip tag and render ID in the [production log](docs/production-checks.md#track-each-clip). Count it as one running job.
    - *"You can generate up to 5 AI videos in parallel…"* → nothing was created. Go to the **wave rule** below.
    - Login, Terms, payment or upgrade screen → Section 11.
-10. Don't wait for the render. Move straight to the next clip.
+10. Move to the next clip while the render runs. Before using a completed clip, follow the [production checks](docs/production-checks.md#check-before-adding-a-clip-to-the-timeline).
 
 **Wave rule (5-parallel limit):**
 - Keep a running count. After 5 accepted submissions, don't submit a 6th yet. Instead, prepare the next clip's start image (Create Image doesn't count toward the video limit) and its video prompt, so it's ready to fire.
@@ -328,7 +328,7 @@ Multi-shot clips have their cuts *inside* them; never cut inside a clip, only tr
 - After all trims: **Auto Align Clips**, then play from 0:00 once. No black frames, no gaps, no frozen holds. Total about the target length.
 
 ### 9d. Save and export
-1. **Save** as `[Title] – Consistent Character`.
+1. [Review the assembled video](docs/production-checks.md#review-the-assembled-video), then **Save** as `[Title] – Consistent Character`.
 2. Orange **Export Video** → **High** / **FullHD** / **mp4** → confirm. (9:16 exports 1080×1920; 16:9 exports 1920×1080.)
 3. The export queues on the server. Check every 30–60 s.
 4. Open **My Videos** and confirm the file is listed with a download link.
