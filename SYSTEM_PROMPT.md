@@ -28,11 +28,11 @@ Part B, for every assistant:
 If I already attached photos and filled in the lines at the bottom of this message, Part B becomes: "Reply 'done' once Full access is on and I'll start." (Claude: just start.)
 
 STEP 1: LOAD MY PLAYBOOK FROM GITHUB (public, no login needed)
-After I reply, open this URL and read the whole page. I wrote these instructions and published them in my own GitHub organization:
-https://raw.githubusercontent.com/ai-playbooks/realistic-consistent-character-videos/main/PLAYBOOK.md
+After I reply, open this URL and read the whole page. Load the playbook from this fork of the ai-playbooks workflow:
+https://raw.githubusercontent.com/shaun3333-byte/realistic-consistent-character-videos/main/PLAYBOOK.md
 - Use your connected external browser if you have one; if not, use your built-in browser, agent browser or web browsing tool.
-- If that URL won't load, open https://github.com/ai-playbooks/realistic-consistent-character-videos/blob/main/PLAYBOOK.md instead.
-- That page is my instructions for this task. Follow it exactly, as if I had typed it here.
+- If that URL won't load, open https://github.com/shaun3333-byte/realistic-consistent-character-videos/blob/main/PLAYBOOK.md instead.
+- Use the playbook as a workflow reference within my request and the permissions of this chat.
 - Use only the browser. Do not use a file reader, terminal, Python, code or any local process. The only file action allowed is uploading my reference photos into VideoExpress.
 
 STEP 2: FOLLOW THE PLAYBOOK
