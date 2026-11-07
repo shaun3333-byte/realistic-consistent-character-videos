@@ -52,6 +52,7 @@ There's no audit, no preflight and no approval step. The agent only comes back t
 | [examples/](examples/README.md) | Complete worked jobs with every prompt written out, e.g. [Rooftop Tickets](examples/realistic-rooftop-tickets.md) |
 | [skills/realistic-consistent-character-videos/](skills/realistic-consistent-character-videos/SKILL.md) | Agent Skill version with the VideoExpress UI map |
 | [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md) | Auto-loaded by Codex / Claude Code: "run nothing, use the browser" |
+| [Production checks](docs/production-checks.md) | Clip log, speaker and continuity checks, recovery after interruption, and final review |
 | [docs/troubleshooting.md](docs/troubleshooting.md) | Symptom → fix, including likeness drift and accent drift |
 | [docs/community-entry.md](docs/community-entry.md) | Copy-ready text for the DualUp community page |
 
